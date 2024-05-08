@@ -1,0 +1,425 @@
+{
+	"info": {
+		"_postman_id": "53bc35d0-b79f-4680-a212-6287aef3dcd6",
+		"name": "InStoreAPI",
+		"description": "> This collection features end-to-end tests that ensure the Intergalactic Bank API components function in an expected sequence. \n  \n\n## **🪐 Get started**\n\nThe fictional Intergalactic Bank Services team is responsible for testing the end-to-end workflows in this collection. You can use this collection to validate specific workflows for your team or figure out ways to increase your test coverage and make your applications more resilient.\n\nTo test the Intergalactic Bank API, you can:\n\n1. **Review tests and scripts:** Check out the [tests](https://learning.postman.com/docs/writing-scripts/test-scripts/) in the Tests tab of a collection, folder, or request. You’ll also find additional steps in the Pre-request Scripts tab, such as for passing data between requests or building up POST request payloads.\n2. **Run tests:** To run the collection, select Run collection from the collection menu. If you are interested in testing one of the use cases, select Run folder from the use case folder menu. Keep in mind that many of these tests contain logic that passes information between requests, and they are meant to be run in order from top to bottom. If you send the requests manually or out of order, your results may vary.\n3. **Review test results:** Many of the test cases contain error messages to help debug service errors. If you’re using this collection as a pre-merge check, ensure that all tests are passing before submitting (and no, deleting the failing test cases isn’t an option 😉).\n    \n\nCheck out the additional sections below or select View complete documentation. For context-sensitive help with a folder or request, look for the documentation icon.\n\n## 🧑‍💻How your team can use this collection\n\n- **Add a mock server to speed up development:** Adding functionality to this service? Since this collection has example responses, you can add a mock server that will return the expected results. Start writing tests against the mock, and once your additions are live, you can swap out the URLs and have a live test suite.\n- **Integrate tests with your CI/CD pipeline:** This comprehensive test suite is a great addition to your existing CI/CD pipeline. Generate the Postman CLI command from the Collection Runner and add this step to your existing checks each time you make a commit affecting this service.\n- **Add a monitor:** If your team is contributing to or relying on this service, it’s a good idea to keep tabs on the status. Adding a monitor to this collection can give you confidence that the service is up and running and alert you to any breaking changes that may have occurred.\n    \n\n## 🔍 What we’re testing\n\n- A very common workflow is the transfer of funds between accounts. We have two scenarios: one which creates all resources and successfully transfers funds, and one which tries the transfer with insufficient funds.\n- During these workflows, we are testing for data correctness, data types, and that data is successfully passed through the system during creation and retrieval.\n    \n\n## 🔒A note on authorization\n\nThis API uses an API key-based authorization. In this collection, we set the authorization at the collection level and generate a new API Key for each test run.\n\n## 👀 View and share run results\n\nInterested in seeing previous run results? We’re happy to share, and have a few ways for you to stay in the loop:\n\n- **Runs tab:** View past collection runs in the `Runs` tab of this collection. Here, you can see the results of past runs, including who ran them and whether it was via the Collection Runner or the CLI. You can also share individual run reports from this page.\n- **Monitors:** If you have a monitor set up for this collection, you can see historical run information when you select the Monitors tab in the left sidebar. You can also have the results sent to Slack or other services when you set up a corresponding integration.\n    \n\n### 🤝Increase test coverage\n\nThe Intergalactic Bank Services team wants your team to have everything they need to successfully test our services with their applications. Is your team utilizing this API in a use case not represented here? Reach out to us on our internal Slack by tagging `@bank-services`. Or add an [inline comment](https://learning.postman.com/docs/collaborating-in-postman/working-with-your-team/discussing-your-work/) to this collection with your test case suggestions.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Authentication",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"let response = pm.response.json();",
+									"",
+									"pm.test(\"Should return a object\", function () {",
+									"    pm.expect(response, 'The response is not an object').to.be.an('object');",
+									"});",
+									"",
+									"pm.test(\"Should contain the `apiKey` property in the response\", function () {",
+									"    pm.expect(response, 'The response does not contain the property').to.haveOwnProperty('apiKey');",
+									"});",
+									"",
+									"pm.test(\"Should return a string for the `apiKey` property\", function () {",
+									"    pm.expect(response.apiKey, 'The property is not a string').to.be.a('string');",
+									"});",
+									"",
+									"// Only set the variable if the response is successful ",
+									"if (pm.response.code === 200) {",
+									"    pm.collectionVariables.set('apiKey', response.apiKey);",
+									"}",
+									""
+								]
+							}
+						}
+					],
+					"id": "cdb13c8e-0166-4a85-b692-d43524c71737",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/api/v1/auth",
+						"description": "This request generates a new API key and saves it to the collection variables if the request is successful."
+					},
+					"response": [
+						{
+							"id": "0d501776-9d65-47c3-ae32-213d665be77f",
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": "{{baseUrl}}/api/v1/auth"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 11 Mar 2024 01:07:35 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "43"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "uWebSockets",
+									"value": "20"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n    \"apiKey\": \"123456789\"\n}"
+						}
+					]
+				}
+			],
+			"id": "118f02d8-173c-427c-a939-093d2fbb0307",
+			"description": "This folder tests authentication endpoint",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "ae9767af-b820-48cb-ba14-d20230aa7e9c",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "37e70234-86ad-491f-a09a-d80db70a302c",
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							"//all requests in this folder should be valid",
+							"pm.test(\"Folder-level status check\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Order",
+			"item": [
+				{
+					"name": "SubmitOrder",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"const response = pm.response.json();",
+									"pm.test(\"Status check\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Should have a valid JSON format response body\", function () {",
+									"    pm.expect(response).to.not.be.undefined;",
+									"});",
+									"",
+									"pm.test(\"Should have the required 'account' object in the response\", function () {",
+									"    pm.expect(response).to.be.an('object');",
+									"    pm.expect(response.account).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Should have the `id` property in the account object and is a non-negative integer\", function () {",
+									"  pm.expect(response.account.id).to.be.a('number').and.to.be.at.least(0);",
+									"});",
+									"",
+									"// Only set the variable if the response is successful ",
+									"if (pm.response.code === 200) {",
+									"    pm.collectionVariables.set(\"e2e_user_name_from\", JSON.parse(pm.request.body.raw).owner);",
+									"    pm.collectionVariables.set(\"e2e_user_account_id_from\", response.account.id)",
+									"}"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"// Generate the payload data for the create user request",
+									"",
+									"let fullName = `${pm.variables.replaceIn(\"{{$randomFirstName}}\")} ${pm.variables.replaceIn(\"{{$randomLastName}}\")}`;",
+									"",
+									"let payload = {",
+									"    \"owner\": `${fullName} - FromAccount`,",
+									"    \"balance\": 0,",
+									"    \"currency\": \"COSMIC_COINS\"",
+									"}",
+									"",
+									"// Store the payload in a runtime-only variable ",
+									"pm.variables.set('payload', JSON.stringify(payload));"
+								]
+							}
+						}
+					],
+					"id": "b33f9763-a691-4153-8fcf-3e56b8c6aaf2",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{{payload}}"
+						},
+						"url": "{{baseUrl}}/api/v1/accounts",
+						"description": "Generates a new account (`fromAccount`), that the funds will be transferred from, and saves the following information if the request is successful:\n\n- Account owner from the request body (saved as collection variable `e2e_user_name_from`)\n    \n- Account id from the response body (saved as collection variable `e2e_user_account_id_from`)"
+					},
+					"response": [
+						{
+							"id": "c47d41c2-8951-479f-b6d2-cacb08ce52f2",
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{{payload}}"
+								},
+								"url": "{{baseUrl}}/api/v1/accounts"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 11 Mar 2024 01:10:32 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "22"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "uWebSockets",
+									"value": "20"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n    \"account\": {\n        \"id\": 153\n    }\n}"
+						},
+						{
+							"id": "0fb233c1-752f-471d-ad75-c42e2d3e372f",
+							"name": "Validation Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{{payload}}"
+								},
+								"url": "{{baseUrl}}/api/v1/accounts"
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"responseTime": null,
+							"body": null
+						},
+						{
+							"id": "c1304494-f8a3-4445-9200-65cbfc228a0b",
+							"name": "Register offline",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{{payload}}"
+								},
+								"url": "{{baseUrl}}/api/v1/accounts"
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"responseTime": null,
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Order",
+					"id": "5be593a0-f37e-4a34-bed9-6e372d744934",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": [
+						{
+							"id": "dcb8803f-72d8-465e-adf9-16c9ac026a4a",
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": []
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"responseTime": null,
+							"body": null
+						}
+					]
+				}
+			],
+			"id": "0cc6a37f-95ca-4893-8014-b39d87e386ce",
+			"description": "This folder tests Order endpoint",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "HealthCheck",
+			"item": [
+				{
+					"name": "health",
+					"id": "079e8959-1aa6-4870-a8d6-429556b7df0b",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/health"
+					},
+					"response": [
+						{
+							"id": "396690ab-ef7a-4353-83e6-44f38d265b7d",
+							"name": "health",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": "{{baseUrl}}/health"
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"responseTime": null,
+							"body": null
+						}
+					]
+				}
+			],
+			"id": "51ef2359-c513-47c7-b90f-8b43287c0467",
+			"description": "API health check endpoint returns the operational status of the API"
+		}
+	],
+	"auth": {
+		"type": "jwt",
+		"jwt": {
+			"algorithm": "HS256",
+			"isSecretBase64Encoded": false,
+			"payload": "{}",
+			"addTokenTo": "header",
+			"headerPrefix": "Bearer",
+			"queryParamKey": "token",
+			"header": "{}"
+		}
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "69c063d9-d645-4168-8e1a-4bab6d5333a1",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "b00a7961-204d-4c1c-a278-c85adc344e67",
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:5000/",
+			"type": "string"
+		},
+		{
+			"value": "",
+			"type": "string",
+			"disabled": true
+		}
+	]
+}
