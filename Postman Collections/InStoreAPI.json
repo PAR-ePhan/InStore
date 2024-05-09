@@ -391,7 +391,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "69c063d9-d645-4168-8e1a-4bab6d5333a1",
+				"id": "62d79b5e-f79f-45a6-a776-d7c1bc724c14",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -401,7 +401,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "b00a7961-204d-4c1c-a278-c85adc344e67",
+				"id": "449fda4d-66f6-476d-bdbd-c0c610293861",
 				"type": "text/javascript",
 				"packages": {},
 				"exec": [
@@ -413,7 +413,7 @@
 	"variable": [
 		{
 			"key": "baseUrl",
-			"value": "http://localhost:5000/",
+			"value": "http://localhost:5000",
 			"type": "string"
 		},
 		{
