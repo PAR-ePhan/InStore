@@ -369,6 +369,19 @@
 							"body": null
 						}
 					]
+				},
+				{
+					"name": "ping",
+					"id": "4dee2b13-7250-4016-9121-373736f7b658",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/ping"
+					},
+					"response": []
 				}
 			],
 			"id": "51ef2359-c513-47c7-b90f-8b43287c0467",
