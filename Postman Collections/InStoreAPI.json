@@ -119,200 +119,7 @@
 		},
 		{
 			"name": "Order",
-			"item": [
-				{
-					"name": "SubmitOrder",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"type": "text/javascript",
-								"exec": [
-									"const response = pm.response.json();",
-									"pm.test(\"Status check\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});",
-									"",
-									"pm.test(\"Should have a valid JSON format response body\", function () {",
-									"    pm.expect(response).to.not.be.undefined;",
-									"});",
-									"",
-									"pm.test(\"Should have the required 'account' object in the response\", function () {",
-									"    pm.expect(response).to.be.an('object');",
-									"    pm.expect(response.account).to.exist;",
-									"});",
-									"",
-									"pm.test(\"Should have the `id` property in the account object and is a non-negative integer\", function () {",
-									"  pm.expect(response.account.id).to.be.a('number').and.to.be.at.least(0);",
-									"});",
-									"",
-									"// Only set the variable if the response is successful ",
-									"if (pm.response.code === 200) {",
-									"    pm.collectionVariables.set(\"e2e_user_name_from\", JSON.parse(pm.request.body.raw).owner);",
-									"    pm.collectionVariables.set(\"e2e_user_account_id_from\", response.account.id)",
-									"}"
-								]
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"type": "text/javascript",
-								"exec": [
-									"// Generate the payload data for the create user request",
-									"",
-									"let fullName = `${pm.variables.replaceIn(\"{{$randomFirstName}}\")} ${pm.variables.replaceIn(\"{{$randomLastName}}\")}`;",
-									"",
-									"let payload = {",
-									"    \"owner\": `${fullName} - FromAccount`,",
-									"    \"balance\": 0,",
-									"    \"currency\": \"COSMIC_COINS\"",
-									"}",
-									"",
-									"// Store the payload in a runtime-only variable ",
-									"pm.variables.set('payload', JSON.stringify(payload));"
-								]
-							}
-						}
-					],
-					"id": "b33f9763-a691-4153-8fcf-3e56b8c6aaf2",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{{payload}}"
-						},
-						"url": "{{baseUrl}}/api/v1/accounts",
-						"description": "Submit an Order to InstoreAPI  \nthe Order can be editted in the body of the request"
-					},
-					"response": [
-						{
-							"id": "c47d41c2-8951-479f-b6d2-cacb08ce52f2",
-							"name": "Successful Response",
-							"originalRequest": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"value": "application/json"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{{payload}}"
-								},
-								"url": "{{baseUrl}}/api/v1/accounts"
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Date",
-									"value": "Mon, 11 Mar 2024 01:10:32 GMT"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "22"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "uWebSockets",
-									"value": "20"
-								}
-							],
-							"cookie": [],
-							"responseTime": null,
-							"body": "{\n    \"account\": {\n        \"id\": 153\n    }\n}"
-						},
-						{
-							"id": "0fb233c1-752f-471d-ad75-c42e2d3e372f",
-							"name": "Validation Error",
-							"originalRequest": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"value": "application/json"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{{payload}}"
-								},
-								"url": "{{baseUrl}}/api/v1/accounts"
-							},
-							"_postman_previewlanguage": null,
-							"header": null,
-							"cookie": [],
-							"responseTime": null,
-							"body": null
-						},
-						{
-							"id": "c1304494-f8a3-4445-9200-65cbfc228a0b",
-							"name": "Register offline",
-							"originalRequest": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"value": "application/json"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{{payload}}"
-								},
-								"url": "{{baseUrl}}/api/v1/accounts"
-							},
-							"_postman_previewlanguage": null,
-							"header": null,
-							"cookie": [],
-							"responseTime": null,
-							"body": null
-						}
-					]
-				},
-				{
-					"name": "Order",
-					"id": "5be593a0-f37e-4a34-bed9-6e372d744934",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": []
-					},
-					"response": [
-						{
-							"id": "dcb8803f-72d8-465e-adf9-16c9ac026a4a",
-							"name": "Successful Response",
-							"originalRequest": {
-								"method": "GET",
-								"header": []
-							},
-							"_postman_previewlanguage": null,
-							"header": null,
-							"cookie": [],
-							"responseTime": null,
-							"body": null
-						}
-					]
-				}
-			],
+			"item": [],
 			"id": "0cc6a37f-95ca-4893-8014-b39d87e386ce",
 			"description": "This folder tests Order endpoint",
 			"event": [
@@ -404,8 +211,9 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "62d79b5e-f79f-45a6-a776-d7c1bc724c14",
+				"id": "4e173ef3-77df-40fe-b83b-ad10b0b219cc",
 				"type": "text/javascript",
+				"packages": {},
 				"exec": [
 					""
 				]
@@ -414,7 +222,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "449fda4d-66f6-476d-bdbd-c0c610293861",
+				"id": "e52e5858-376f-4a5f-a4e2-89068c73e47b",
 				"type": "text/javascript",
 				"packages": {},
 				"exec": [
