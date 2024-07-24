@@ -198,7 +198,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "{{baseUrl}}/ping"
+						"url": "{{baseUrl}}/v1/ping"
 					},
 					"response": []
 				}
@@ -207,14 +207,15 @@
 			"description": "API health check endpoint returns the operational status of the API"
 		},
 		{
-			"name": "New Request",
+			"name": "Ping Test Auth",
 			"id": "25755281-b713-47ec-912b-5dbe136458d7",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": "{{baseUrl}}/v1/ping/testauth"
 			},
 			"response": []
 		}
@@ -222,14 +223,14 @@
 	"auth": {
 		"type": "bearer",
 		"bearer": {
-			"token": "\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwicm9sZSI6IkluU3RvcmVBcGlVc2VyIiwibmJmIjoxNzIxODM0NTg2LCJleHAiOjE3MjIwOTM3ODYsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NTAwMCIsImF1ZCI6Imluc3RvcmVhcGkifQ.p_wslZ0JCEFmhtVc_upfJRxVrlk-8ZtHRNLotesSCF8\""
+			"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwicm9sZSI6IkluU3RvcmVBcGlVc2VyIiwibmJmIjoxNzIxODM0NTg2LCJleHAiOjE3MjIwOTM3ODYsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NTAwMCIsImF1ZCI6Imluc3RvcmVhcGkifQ.p_wslZ0JCEFmhtVc_upfJRxVrlk-8ZtHRNLotesSCF8"
 		}
 	},
 	"event": [
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "f754505d-07be-4514-a96b-b1123367a1b2",
+				"id": "ac5b2d40-9969-49af-b7ef-2de55a3dfe6e",
 				"type": "text/javascript",
 				"packages": {},
 				"exec": [
@@ -240,7 +241,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "e146f9f6-0eea-4217-bfa6-fd1e4844fcd6",
+				"id": "c5590b81-46d9-4e9b-bb04-0c4e8fe084d0",
 				"type": "text/javascript",
 				"packages": {},
 				"exec": [
