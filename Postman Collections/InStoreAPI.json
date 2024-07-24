@@ -86,6 +86,18 @@
 							"body": "{\n    \"apiKey\": \"123456789\"\n}"
 						}
 					]
+				},
+				{
+					"name": "New Request",
+					"id": "a9644975-e638-4a3e-8477-20a76a36c889",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
 				}
 			],
 			"id": "118f02d8-173c-427c-a939-093d2fbb0307",
@@ -193,6 +205,18 @@
 			],
 			"id": "51ef2359-c513-47c7-b90f-8b43287c0467",
 			"description": "API health check endpoint returns the operational status of the API"
+		},
+		{
+			"name": "New Request",
+			"id": "25755281-b713-47ec-912b-5dbe136458d7",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
 		}
 	],
 	"auth": {
