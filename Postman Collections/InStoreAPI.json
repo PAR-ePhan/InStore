@@ -220,22 +220,16 @@
 		}
 	],
 	"auth": {
-		"type": "jwt",
-		"jwt": {
-			"algorithm": "HS256",
-			"isSecretBase64Encoded": false,
-			"payload": "{}",
-			"addTokenTo": "header",
-			"headerPrefix": "Bearer",
-			"queryParamKey": "token",
-			"header": "{}"
+		"type": "bearer",
+		"bearer": {
+			"token": "\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwicm9sZSI6IkluU3RvcmVBcGlVc2VyIiwibmJmIjoxNzIxODM0NTg2LCJleHAiOjE3MjIwOTM3ODYsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NTAwMCIsImF1ZCI6Imluc3RvcmVhcGkifQ.p_wslZ0JCEFmhtVc_upfJRxVrlk-8ZtHRNLotesSCF8\""
 		}
 	},
 	"event": [
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "4e173ef3-77df-40fe-b83b-ad10b0b219cc",
+				"id": "f754505d-07be-4514-a96b-b1123367a1b2",
 				"type": "text/javascript",
 				"packages": {},
 				"exec": [
@@ -246,7 +240,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "e52e5858-376f-4a5f-a4e2-89068c73e47b",
+				"id": "e146f9f6-0eea-4217-bfa6-fd1e4844fcd6",
 				"type": "text/javascript",
 				"packages": {},
 				"exec": [
