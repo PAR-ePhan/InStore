@@ -221,6 +221,18 @@
 				"url": "{{baseUrl}}/v1/ping/testauth"
 			},
 			"response": []
+		},
+		{
+			"name": "New Request",
+			"id": "f499f6b0-3be9-4f94-9ce4-c24dc3eebbd7",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
 		}
 	],
 	"auth": {
