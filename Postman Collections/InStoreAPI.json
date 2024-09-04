@@ -131,7 +131,20 @@
 		},
 		{
 			"name": "Order",
-			"item": [],
+			"item": [
+				{
+					"name": "GetItemavailability",
+					"id": "b72110d1-15e7-4c03-a012-9525bc9d6f11",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			],
 			"id": "0cc6a37f-95ca-4893-8014-b39d87e386ce",
 			"description": "This folder tests Order endpoint",
 			"event": [
